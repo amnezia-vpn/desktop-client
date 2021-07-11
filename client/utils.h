@@ -14,6 +14,7 @@ public:
     static QString getRandomString(int len);
 
     static QString executable(const QString& baseName, bool absPath);
+    static QString usrExecutable(const QString& baseName);
     static QString systemLogPath();
     static bool createEmptyFile(const QString& path);
     static bool initializePath(const QString& path);

@@ -68,6 +68,14 @@ QString Utils::executable(const QString& baseName, bool absPath)
     return QCoreApplication::applicationDirPath() + "/" + fileName;
 }
 
+QString Utils::usrExecutable(const QString& baseName)
+{
+    if (QFileInfo::exists("/usr/sbin/" + baseName))
+        return ("/usr/sbin/" + baseName);
+    else
+        return ("/usr/bin/" + baseName);
+}
+
 bool Utils::processIsRunning(const QString& fileName)
 {
 #ifdef Q_OS_WIN

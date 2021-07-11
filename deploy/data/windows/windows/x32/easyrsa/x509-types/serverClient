@@ -1,0 +1,8 @@
+# X509 extensions for a client/server
+
+basicConstraints = CA:FALSE
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid,issuer:always
+extendedKeyUsage = serverAuth,clientAuth
+keyUsage = digitalSignature,keyEncipherment
+

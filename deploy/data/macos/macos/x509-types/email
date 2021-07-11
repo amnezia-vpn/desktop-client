@@ -1,0 +1,8 @@
+# X509 extensions for email
+
+basicConstraints = CA:FALSE
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid,issuer:always
+extendedKeyUsage = emailProtection
+keyUsage = digitalSignature,keyEncipherment,nonRepudiation
+

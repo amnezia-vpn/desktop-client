@@ -1,0 +1,8 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=AmneziaVPN client
+Comment=AmneziaVPN client
+Exec=AmneziaVPN
+Icon=AmneziaVPN_Logo.png
+Categories=VPN

@@ -1,0 +1,13 @@
+[Unit]
+Description=AmneziaVPN Service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+ExecStart=/opt/AmneziaVPN/service/bin/AmneziaVPN-service
+
+[Install]
+WantedBy=multi-user.target

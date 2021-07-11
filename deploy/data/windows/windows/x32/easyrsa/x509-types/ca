@@ -1,0 +1,13 @@
+# X509 extensions for a ca
+
+# Note that basicConstraints will be overridden by Easy-RSA when defining a
+# CA_PATH_LEN for CA path length limits. You could also do this here
+# manually as in the following example in place of the existing line:
+#
+# basicConstraints = CA:TRUE, pathlen:1
+
+basicConstraints = CA:TRUE
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always,issuer:always
+keyUsage = cRLSign, keyCertSign
+
