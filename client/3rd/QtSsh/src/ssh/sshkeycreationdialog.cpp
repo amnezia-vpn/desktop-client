@@ -43,7 +43,7 @@ SshKeyCreationDialog::SshKeyCreationDialog(QWidget *parent)
 {
     m_ui->setupUi(this);
     // Not using Utils::PathChooser::browseButtonLabel to avoid dependency
-#ifdef Q_OS_MAC
+#ifdef Q_OS_MAC  || defined(Q_OS_LINUX)
     m_ui->privateKeyFileButton->setText(tr("Choose..."));
 #else
     m_ui->privateKeyFileButton->setText(tr("Browse..."));

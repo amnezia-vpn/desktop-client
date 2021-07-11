@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>AmneziaVPN</Name>
+    <Version>1.6.0.0</Version>
+    <Title>AmneziaVPN</Title>
+    <Publisher>AmneziaVPN</Publisher>
+    <StartMenuDir>AmneziaVPN</StartMenuDir>
+    <TargetDir>@ApplicationsDir@/AmneziaVPN</TargetDir>
+    <WizardDefaultWidth>600</WizardDefaultWidth>
+    <WizardDefaultHeight>380</WizardDefaultHeight>
+    <WizardStyle>Modern</WizardStyle>
+    <RemoveTargetDir>true</RemoveTargetDir>
+    <AllowSpaceInPath>true</AllowSpaceInPath>
+    <AllowNonAsciiCharacters>false</AllowNonAsciiCharacters>
+    <ControlScript>controlscript.js</ControlScript>
+    <RepositorySettingsPageVisible>false</RepositorySettingsPageVisible>
+    <DependsOnLocalInstallerBinary>true</DependsOnLocalInstallerBinary>
+    <SupportsModify>false</SupportsModify>
+    <DisableAuthorizationFallback>true</DisableAuthorizationFallback>
+    <RemoteRepositories>
+     <Repository>
+       <Url>https://amneziavpn.org/updates/linux</Url>
+       <Enabled>true</Enabled>
+       <DisplayName>AmneziaVPN - repository for Linux</DisplayName>
+     </Repository>
+    </RemoteRepositories>
+</Installer>

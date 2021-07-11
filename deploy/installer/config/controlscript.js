@@ -25,6 +25,8 @@ function appInstalled()
         appInstalledUninstallerPath_x86 = installer.value("RootDir") + "Program Files (x86)/AmneziaVPN/maintenancetool.exe";
     } else if (runningOnMacOS()){
         appInstalledUninstallerPath = "/Applications/" + appName() + ".app/maintenancetool.app/Contents/MacOS/maintenancetool";
+    } else if (runningOnLinux()){
+	allInstalledUninstallerPath = "/opt/" + appName();
     }
 
     return installer.fileExists(appInstalledUninstallerPath) || installer.fileExists(appInstalledUninstallerPath_x86);
@@ -43,6 +45,11 @@ function runningOnWindows()
 function runningOnMacOS()
 {
     return (installer.value("os") === "mac");
+}
+
+function runningOnLinux()
+{
+    return (installer.value("os") === "linux");
 }
 
 function sleep(miliseconds) {

@@ -36,8 +36,12 @@ ErrorCode ShadowSocksVpnProtocol::start()
     m_shadowSocksCfgFile.write(QJsonDocument(m_shadowSocksConfig).toJson());
     m_shadowSocksCfgFile.close();
 
+#ifdef Q_OS_LINUX
+    QStringList args = QStringList() << "-c" << m_shadowSocksCfgFile.fileName();
+#else
     QStringList args = QStringList() << "-c" << m_shadowSocksCfgFile.fileName()
                                      << "--no-delay";
+#endif
 
     qDebug().noquote() << "ShadowSocksVpnProtocol::start()"
                        << shadowSocksExecPath() << args.join(" ");
@@ -91,6 +95,8 @@ QString ShadowSocksVpnProtocol::shadowSocksExecPath()
 {
 #ifdef Q_OS_WIN
     return Utils::executable(QString("ss/ss-local"), true);
+#elif defined Q_OS_LINUX
+    return Utils::usrExecutable(QString("ss-local"));
 #else
     return Utils::executable(QString("/ss-local"), true);
 #endif

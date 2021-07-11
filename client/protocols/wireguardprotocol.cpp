@@ -122,6 +122,8 @@ QString WireguardProtocol::wireguardExecPath() const
 {
 #ifdef Q_OS_WIN
     return Utils::executable("wireguard/wireguard", true);
+#elif defined Q_OS_LINUX
+    return Utils::usrExecutable("wg");
 #else
     return Utils::executable("/wireguard", true);
 #endif

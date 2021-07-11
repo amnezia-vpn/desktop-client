@@ -19,6 +19,7 @@ QString OpenVpnConfigurator::getEasyRsaShPath()
     qDebug().noquote() << "EasyRsa sh path" << easyRsaShPath;
 
     return easyRsaShPath;
+
 #else
     return QDir::toNativeSeparators(QApplication::applicationDirPath()) + "/easyrsa";
 #endif
@@ -29,12 +30,14 @@ QProcessEnvironment OpenVpnConfigurator::prepareEnv()
     QProcessEnvironment env = QProcessEnvironment::systemEnvironment();
     QString pathEnvVar = env.value("PATH");
 
-#ifdef Q_OS_WIN
+#if defined Q_OS_WIN
     pathEnvVar.clear();
     pathEnvVar.prepend(QDir::toNativeSeparators(QApplication::applicationDirPath()) + "\\cygwin;");
     pathEnvVar.prepend(QDir::toNativeSeparators(QApplication::applicationDirPath()) + "\\openvpn;");
-#else
+#elif defined Q_OS_MAC
     pathEnvVar.prepend(QDir::toNativeSeparators(QApplication::applicationDirPath()) + "/Contents/MacOS");
+#elif defined Q_OS_LINUX
+    pathEnvVar.prepend(QDir::toNativeSeparators(QApplication::applicationDirPath()) + "/openvpn");
 #endif
 
     env.insert("PATH", pathEnvVar);
@@ -213,7 +216,7 @@ QString OpenVpnConfigurator::genOpenVpnConfig(const ServerCredentials &credentia
         config.replace("</tls-auth>", "");
     }
 
-#ifdef Q_OS_MAC
+#if defined Q_OS_MAC || defined(Q_OS_LINUX)
     config.replace("block-outside-dns", "");
 #endif
 
@@ -236,7 +239,7 @@ QString OpenVpnConfigurator::processConfigWithLocalSettings(QString config)
         }
     }
 
-#ifdef Q_OS_MAC
+#if defined Q_OS_MAC || defined(Q_OS_LINUX)
     config.replace("block-outside-dns", "");
     QString dnsConf = QString(
                 "\nscript-security 2\n"
@@ -259,7 +262,7 @@ QString OpenVpnConfigurator::processConfigWithExportSettings(QString config)
         config.append("redirect-gateway def1 bypass-dhcp\n");
     }
 
-#ifdef Q_OS_MAC
+#if defined Q_OS_MAC || defined(Q_OS_LINUX)
     config.replace("block-outside-dns", "");
 #endif
 
